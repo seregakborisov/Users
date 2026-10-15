@@ -87,11 +87,11 @@ async def user_public(user: Annotated[User, Depends(current_user)]):
     return {"Welcome,": user.username}
 
 @app.get("/items/private")
-async def user_active(user: Annotated[User, Depends(active_user)]):
+async def user_private(user: Annotated[User, Depends(active_user)]):
     return {"Доступен базовый функционал для пользователя": user.username}
  
 @app.get("/items/pro")
-async def private_user(user: Annotated[User, Depends(balance)]):
+async def user_pro(user: Annotated[User, Depends(balance)]):
     return {"Вам доступны платные функции": user.username,
             "Ваш баланс": user.balance}
 
