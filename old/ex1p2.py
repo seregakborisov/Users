@@ -10,7 +10,7 @@ def calculate(number):
     result = 0
 
     for i in range(1, number):
-        result += ((i ** 2) / (i ** 3)) * (i + i) 
+        result += ((i**2) / (i**3)) * (i + i)
 
 
 threads = []
@@ -18,10 +18,7 @@ threads = []
 start = time.time()
 
 for i in range(N):
-    thread = threading.Thread(
-        target=calculate,
-        args=(count + i,)
-    )
+    thread = threading.Thread(target=calculate, args=(count + i,))
 
     threads.append(thread)
     thread.start()

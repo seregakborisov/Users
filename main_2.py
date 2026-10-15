@@ -9,20 +9,22 @@ import asyncio
 
 app = FastAPI()
 
-@app.on_event('startup')
+
+@app.on_event("startup")
 async def startup():
     await init_models()
-
 
 
 class MovieSchema(BaseModel):
     name: str
     length_min: int
 
+
 class TvseriesSchema(BaseModel):
     name: str
     const_series: int
     length_series: int
+
 
 class GenreSchema(BaseModel):
     genre: str
@@ -41,6 +43,7 @@ async def read_root(
 
     return {"status": "application is running"}
 
+
 """@app.post("/TVseries")
 async def TV_series(
     tvseries_data: Annotated[TvseriesSchema, Body()],
@@ -53,6 +56,7 @@ async def TV_series(
 
     return {"status": "application is running"}"""
 
+
 @app.post("/genre")
 async def read_root(
     movie_data: Annotated[GenreSchema, Body()],
@@ -63,7 +67,7 @@ async def read_root(
 
     await db_conn.commit()
 
-    return {"status": "application is running"}
+    return {"status": "application is running"}  # TODO: сделать текст информативным.
 
 
 @app.put("/")
@@ -74,7 +78,10 @@ async def read_root(
 ):
     update_movie = update(Movie)
 
-    new_data = await db_conn.execute(update_movie, [{"id": movie_id, "name": movie_data.name, "lengtg": movie_data.length_min}],)
+    new_data = await db_conn.execute(
+        update_movie,
+        [{"id": movie_id, "name": movie_data.name, "lengtg": movie_data.length_min}],
+    )
 
     await db_conn.commit()
 
@@ -91,7 +98,9 @@ async def read_root(
 
     await db_conn.commit()
 
-    return {"Result": "ok"}  #Не удаляется фильм, если есть зависимость с таблицей жанров
+    return {
+        "Result": "ok"
+    }  # Не удаляется фильм, если есть зависимость с таблицей жанров
 
 
 @app.get("/filter")
@@ -99,17 +108,15 @@ async def read_root(
     movie_id: Annotated[int, Query()], db_conn: AsyncSession = Depends(get_session)
 ):
     select_movie = select(Movie, Genre).join(Movie.genre).where(Movie.id == movie_id)
-    
+
     res = await db_conn.execute(select_movie)
-    
+
     for movie, genre in res.all():
         print(movie.name, "-", genre.name)
     print(res.all())
-    
+
     return {"RESULT": movie.name}
 
 
 if __name__ == "__main__":
     asyncio.run(init_models())
-
-    

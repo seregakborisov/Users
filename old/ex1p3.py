@@ -11,20 +11,16 @@ def calculate(number):
     result = 0
 
     for i in range(1, number):
-        result += ((i ** 2) / (i ** 3)) * (i + i) 
+        result += ((i**2) / (i**3)) * (i + i)
 
 
 if __name__ == "main":
-
     processes = []
 
     start = time.perf_counter()
 
     for i in range(N):
-        process = multiprocessing.Process(
-            target=calculate,
-            args=(NUMBER + i,)
-        )
+        process = multiprocessing.Process(target=calculate, args=(NUMBER + i,))
 
         processes.append(process)
         process.start()
