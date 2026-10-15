@@ -78,6 +78,9 @@ async def balance(user: User = Depends(active_user)):
     raise HTTPException(status_code=403, detail = "No many")
     
                   
+@app.get("/testing/")
+async def read_items(token: Annotated[str, Depends(oauth2_scheme)]):
+    return{"token": token}
 
 @app.get("/items/public")
 async def user_public(user: Annotated[User, Depends(current_user)]):
