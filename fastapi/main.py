@@ -36,7 +36,7 @@ class Item(BaseModel):
 
 
 users: list[User] = [  
-    User(username = "Sergey",
+    User(username = "Sergey1",
         is_active = True,
         is_admin = False,
         balance = 15
