@@ -6,4 +6,5 @@ __pycache__/
 
 
 .env
+envs/kafka.env
 .ruff_cache/
