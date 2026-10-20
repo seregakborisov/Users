@@ -1,2 +1,2 @@
-from .models import Movie, Genre
+from .models import User
 from .base import Base
