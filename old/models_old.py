@@ -1,9 +1,9 @@
-  # genre_id = mapped_column(
-    #     ForeignKey("genre.id"),
-    #     nullable=False,
-    # )
+# genre_id = mapped_column(
+#     ForeignKey("genre.id"),
+#     nullable=False,
+# )
 
-    # genre = relationship("Genre", back_populates="movie", cascade="all, delete-orphan")
+# genre = relationship("Genre", back_populates="movie", cascade="all, delete-orphan")
 
 
 # class TV_Series(Base):

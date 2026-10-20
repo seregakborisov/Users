@@ -7,8 +7,4 @@ engine = create_async_engine(DATABASE_URL)
 Base = declarative_base()
 
 # Используем async_sessionmaker вместо sessionmaker
-async_session = async_sessionmaker(
-    engine, 
-    class_=AsyncSession, 
-    expire_on_commit=False
-)
+async_session = async_sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
