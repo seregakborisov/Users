@@ -261,7 +261,7 @@ async def update_admin(
     }
 
 
-@app.delete("/diactivate")
+@app.delete("/deactivate")
 async def deactivate(
     user_id: Annotated[int, Query()],
     admin: Annotated[User, Depends(get_current_admin)],
