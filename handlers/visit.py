@@ -11,13 +11,16 @@ from db.models import User
 async def create_lesson(user_id: int, lesson_name: str):
     url = "http://127.0.0.1:8001/user_visit"
 
-    async with aiohttp.ClientSession() as session, session.post(
-        url,
-        json={
-            "user_id": user_id,
-            "lesson_name": lesson_name,
-        },
-    ) as response:
+    async with (
+        aiohttp.ClientSession() as session,
+        session.post(
+            url,
+            json={
+                "user_id": user_id,
+                "lesson_name": lesson_name,
+            },
+        ) as response,
+    ):
         return await response.json()
 
 

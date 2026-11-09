@@ -1,4 +1,3 @@
-
 from fastapi import FastAPI
 from fastapi.security import OAuth2PasswordBearer
 from pwdlib import PasswordHash
