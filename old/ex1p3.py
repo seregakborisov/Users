@@ -1,7 +1,6 @@
-import time
 import multiprocessing
 import os
-
+import time
 
 N = os.cpu_count()
 NUMBER = 5000000

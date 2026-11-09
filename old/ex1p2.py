@@ -1,6 +1,5 @@
-import time
 import threading
-
+import time
 
 N = 20
 count = 1000000

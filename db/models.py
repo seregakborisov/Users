@@ -1,6 +1,5 @@
-from sqlalchemy import Column
-from sqlalchemy import Integer, String, ForeignKey, Float, Boolean
-from sqlalchemy.orm import relationship, mapped_column
+from sqlalchemy import Boolean, Column, Float, Integer, String
+
 from .base import Base
 
 
@@ -13,3 +12,4 @@ class User(Base):
     is_active = Column(Boolean, default=True)
     is_admin = Column(Boolean, default=False)
     password = Column(String, nullable=False)
+    role = Column(String, nullable=False)

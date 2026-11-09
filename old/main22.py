@@ -1,11 +1,8 @@
-from fastapi import FastAPI, Depends, Header, HTTPException, Request
-from pydantic import BaseModel
-from typing import Annotated
-import time
-from datetime import datetime, timedelta, timezone
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from pwdlib import PasswordHash
 
+from fastapi import FastAPI
+from fastapi.security import OAuth2PasswordBearer
+from pwdlib import PasswordHash
+from pydantic import BaseModel
 
 app = FastAPI()
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
