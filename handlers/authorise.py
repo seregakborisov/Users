@@ -13,10 +13,14 @@ from db.main import get_session
 from .router import router
 from .schemes import Token
 from db.models import User
+import os
+from dotenv import load_dotenv
 
-SECRET_KEY = "cb32e9ded39339be7b9d739e58464af275470a13907d45673cf780caee2d68d0"
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 10
+load_dotenv()
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+ALGORITHM = os.getenv("ALGORITHM")
+ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "10"))
 
 password_hash = PasswordHash.recommended()
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")

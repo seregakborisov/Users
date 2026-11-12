@@ -27,7 +27,7 @@ async def registration(
     return {"username": "Вы зарегистрированы!"}
 
 
-@router.get("/self", response_model=UserSelfSchema)
+@router.post("/self", response_model=UserSelfSchema)
 async def get_self(current_user: Annotated[User, Depends(get_current_user)]):
     return current_user
 

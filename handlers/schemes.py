@@ -39,3 +39,4 @@ class UserSelfSchema(BaseModel):
     is_active: bool
     is_admin: bool
     balance: float
+    role: str

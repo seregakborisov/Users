@@ -3,6 +3,7 @@ env/
 venv/
 .venv/
 __pycache__/
+old/
 
 
 .env
