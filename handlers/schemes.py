@@ -12,7 +12,7 @@ class TokenData(BaseModel):
 
 class UserSchema(BaseModel):
     username: str
-    password: str
+    password: str    
 
 
 class AddUserSchema(BaseModel):
@@ -21,6 +21,7 @@ class AddUserSchema(BaseModel):
     is_admin: bool
     balance: float
     password: str
+    role: str
 
 
 class UserAdminSchema(BaseModel):

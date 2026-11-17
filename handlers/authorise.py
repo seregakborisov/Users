@@ -76,6 +76,14 @@ async def get_current_admin(current_user: Annotated[User, Depends(get_current_us
 
     return current_user
 
+async def teacher_or_admin(current_user: Annotated[User, Depends(get_current_user)]):
+    if current_user.role not in ("Teacher", "Admin"):
+        raise HTTPException(
+            status_code=403,
+            detail="Недостаточно прав",
+        )
+    
+    return current_user
 
 async def get_current_role(current_user: Annotated[User, Depends(get_current_user)]):
     role = cast(str, current_user.role)

@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from .authorise import get_current_admin, get_current_user, password_hash
+from .authorise import get_current_admin, get_current_user, teacher_or_admin, password_hash
 from fastapi import Depends, HTTPException, status
 from .schemes import AddUserSchema, UserAdminSchema, UserSchema, UserSelfSchema
 from sqlalchemy import select
@@ -18,7 +18,7 @@ async def registration(
     new_user = User(
         username=user.username,
         password=password_hash.hash(user.password),
-        role="Student",
+        role='Student'
     )
 
     db.add(new_user)
@@ -35,7 +35,7 @@ async def get_self(current_user: Annotated[User, Depends(get_current_user)]):
 @router.get("/users", response_model=list[UserSelfSchema])
 async def get_users(
     db: Annotated[AsyncSession, Depends(get_session)],
-    admin: Annotated[User, Depends(get_current_admin)],
+    admin: Annotated[User, Depends(teacher_or_admin)],
 ):
     result = await db.execute(select(User))
     return result.scalars().all()
@@ -53,6 +53,7 @@ async def user_add(
         is_admin=user.is_admin,
         balance=user.balance,
         password=password_hash.hash(user.password),
+        role=user.role
     )
 
     db.add(new_user)
